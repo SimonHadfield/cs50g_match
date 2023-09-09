@@ -193,6 +193,9 @@ function PlayState:calculateMatches()
         gSounds['match']:stop()
         gSounds['match']:play()
 
+        -- add time to timer for a match
+        self.timer = self.timer + 10
+
         -- add score for each match
         for k, match in pairs(matches) do
             self.score = self.score + #match * 50
