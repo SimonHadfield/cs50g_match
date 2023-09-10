@@ -1,0 +1,8 @@
+
+k: 	1
+
+match: 	table: 0x01f465fee248
+
+i: 	1
+
+tile: 	table: 0x01f465fee248

@@ -13,10 +13,14 @@
 
 Board = Class{}
 
-function Board:init(x, y)
+function Board:init(x, y, level)
     self.x = x
     self.y = y
     self.matches = {}
+    self.level = level
+
+    self.varieties = 5
+    self.currentTiles = {} -- to give score according to tiles
 
     self:initializeTiles()
 end
@@ -24,18 +28,31 @@ end
 function Board:initializeTiles()
     self.tiles = {}
 
-    for tileY = 1, 8 do
-        
-        -- empty table that will serve as a new row
-        table.insert(self.tiles, {})
-
-        for tileX = 1, 8 do
+    if self.level < 7 then 
+        for tileY = 1, 8 do
             
-            -- create a new tile at X,Y with a random color and variety
-            table.insert(self.tiles[tileY], Tile(tileX, tileY, math.random(18), math.random(6)))
-        end
-    end
+            -- empty table that will serve as a new row
+            table.insert(self.tiles, {})
 
+            for tileX = 1, 8 do
+                
+                -- create a new tile at X,Y with a random color and variety
+                table.insert(self.tiles[tileY], Tile(tileX, tileY, math.random(18), math.random(self.level)))
+            end
+        end
+    else 
+        for tileY = 1, 8 do
+            
+            -- empty table that will serve as a new row
+            table.insert(self.tiles, {})
+
+            for tileX = 1, 8 do
+                
+                -- create a new tile at X,Y with a random color and variety
+                table.insert(self.tiles[tileY], Tile(tileX, tileY, math.random(18), math.random(6)))
+            end
+        end
+    end 
     while self:calculateMatches() do
         
         -- recursively initialize if matches were returned so we always have
@@ -231,27 +248,49 @@ function Board:getFallingTiles()
         end
     end
 
-    -- create replacement tiles at the top of the screen
-    for x = 1, 8 do
-        for y = 8, 1, -1 do
-            local tile = self.tiles[y][x]
+    if self.level < 7 then 
+        -- create replacement tiles at the top of the screen
+        for x = 1, 8 do
+            for y = 8, 1, -1 do
+                local tile = self.tiles[y][x]
 
-            -- if the tile is nil, we need to add a new one
-            if not tile then
+                -- if the tile is nil, we need to add a new one
+                if not tile then
 
-                -- new tile with random color and variety
-                local tile = Tile(x, y, math.random(18), math.random(6))
-                tile.y = -32
-                self.tiles[y][x] = tile
+                    -- new tile with random color and variety
+                    local tile = Tile(x, y, math.random(18), math.random(self.level))
+                    tile.y = -32
+                    self.tiles[y][x] = tile
 
-                -- create a new tween to return for this tile to fall down
-                tweens[tile] = {
-                    y = (tile.gridY - 1) * 32
-                }
+                    -- create a new tween to return for this tile to fall down
+                    tweens[tile] = {
+                        y = (tile.gridY - 1) * 32
+                    }
+                end
             end
         end
+    else
+                -- create replacement tiles at the top of the screen
+                for x = 1, 8 do
+                    for y = 8, 1, -1 do
+                        local tile = self.tiles[y][x]
+        
+                        -- if the tile is nil, we need to add a new one
+                        if not tile then
+        
+                            -- new tile with random color and variety
+                            local tile = Tile(x, y, math.random(18), math.random(6))
+                            tile.y = -32
+                            self.tiles[y][x] = tile
+        
+                            -- create a new tween to return for this tile to fall down
+                            tweens[tile] = {
+                                y = (tile.gridY - 1) * 32
+                            }
+                        end
+                    end
+                end
     end
-
     return tweens
 end
 

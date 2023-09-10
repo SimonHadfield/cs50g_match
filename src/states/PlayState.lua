@@ -59,22 +59,23 @@ function PlayState:enter(params)
     
     -- grab level # from the params we're passed
     self.level = params.level
-
+    
     -- spawn a board and place it toward the right
-    self.board = params.board or Board(VIRTUAL_WIDTH - 272, 16)
-
+    self.board = params.board or Board(VIRTUAL_WIDTH - 272, 16, self.level)
+    
     -- grab score from params if it was passed
     self.score = params.score or 0
-
+    
     -- score we have to reach to get to the next level
     self.scoreGoal = self.level * 1.25 * 1000
 end
 
 function PlayState:update(dt)
+    
     if love.keyboard.wasPressed('escape') then
         love.event.quit()
     end
-
+    
     -- go back to start if time runs out
     if self.timer <= 0 then
         
@@ -193,12 +194,19 @@ function PlayState:calculateMatches()
         gSounds['match']:stop()
         gSounds['match']:play()
 
-        -- add time to timer for a match
-        self.timer = self.timer + 10
 
         -- add score for each match
         for k, match in pairs(matches) do
             self.score = self.score + #match * 50
+            -- add time to timer for a match
+            self.timer = self.timer + 1*#match
+            print("\nk: ",k)
+            print("\nmatch: ",match)
+
+            for i, tile in pairs(matches) do
+                print("\ni: ",i)
+                print("\ntile: ",tile)
+            end
         end
 
         -- remove any tiles that matched from the board, making empty spaces
