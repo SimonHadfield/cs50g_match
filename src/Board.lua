@@ -23,6 +23,7 @@ function Board:init(x, y, level)
     self.currentTiles = {} -- to give score according to tiles
 
     self:initializeTiles()
+    --self.tiles = self.tiles
 end
 
 function Board:initializeTiles()
@@ -68,6 +69,7 @@ end
 ]]
 function Board:calculateMatches()
     local matches = {}
+    local varietyInMatches = {} -- table keeping track of variety within a match e.g {1,2,2} variety
 
     -- how many of the same color blocks in a row we've found
     local matchNum = 1
@@ -78,6 +80,10 @@ function Board:calculateMatches()
 
         matchNum = 1
         
+        --test 
+        --print("color: ", self.tiles[y][1].color)
+        --print("variety: ", self.tiles[y][1].variety)
+
         -- every horizontal tile
         for x = 2, 8 do
             
@@ -92,16 +98,19 @@ function Board:calculateMatches()
                 -- if we have a match of 3 or more up to now, add it to our matches table
                 if matchNum >= 3 then
                     local match = {}
+                    local varietyMatch = {}
 
                     -- go backwards from here by matchNum
                     for x2 = x - 1, x - matchNum, -1 do
                         
                         -- add each tile to the match that's in that match
                         table.insert(match, self.tiles[y][x2])
+                        table.insert(varietyMatch, self.tiles[y][x2].variety)
                     end
 
                     -- add this match to our total matches table
                     table.insert(matches, match)
+                    table.insert(varietyInMatches, varietyMatch)
                 end
 
                 matchNum = 1
@@ -116,13 +125,16 @@ function Board:calculateMatches()
         -- account for the last row ending with a match
         if matchNum >= 3 then
             local match = {}
+            local varietyMatch = {}
             
             -- go backwards from end of last row by matchNum
             for x = 8, 8 - matchNum + 1, -1 do
                 table.insert(match, self.tiles[y][x])
+                table.insert(varietyMatch, self.tiles[y][x].variety)
             end
 
             table.insert(matches, match)
+            table.insert(varietyInMatches, varietyMatch)
         end
     end
 
@@ -141,12 +153,15 @@ function Board:calculateMatches()
 
                 if matchNum >= 3 then
                     local match = {}
+                    local varietyMatch = {}
 
                     for y2 = y - 1, y - matchNum, -1 do
                         table.insert(match, self.tiles[y2][x])
+                        table.insert(varietyMatch, self.tiles[y2][x].variety)
                     end
 
                     table.insert(matches, match)
+                    table.insert(varietyInMatches, varietyMatch)
                 end
 
                 matchNum = 1
@@ -161,21 +176,26 @@ function Board:calculateMatches()
         -- account for the last column ending with a match
         if matchNum >= 3 then
             local match = {}
+            local varietyMatch = {}
             
             -- go backwards from end of last row by matchNum
             for y = 8, 8 - matchNum + 1, -1 do
                 table.insert(match, self.tiles[y][x])
+                table.insert(varietyMatch, self.tiles[y][x].variety)
             end
 
             table.insert(matches, match)
+            table.insert(varietyInMatches, variety)
         end
     end
 
     -- store matches for later reference
     self.matches = matches
+    self.varietyInMatches = varietyInMatches
 
     -- return matches table if > 0, else just return false
-    return #self.matches > 0 and self.matches or false
+    --return #self.matches > 0 and self.matches or false
+    return #self.varietyInMatches > 0 and self.varietyInMatches or false
 end
 
 --[[

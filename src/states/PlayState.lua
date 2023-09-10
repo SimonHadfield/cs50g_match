@@ -71,6 +71,8 @@ function PlayState:enter(params)
 end
 
 function PlayState:update(dt)
+
+    --print("self.tiles -> playstate.lua: ", self.tiles[1][1].variety)
     
     if love.keyboard.wasPressed('escape') then
         love.event.quit()
@@ -188,24 +190,27 @@ function PlayState:calculateMatches()
     self.highlightedTile = nil
 
     -- if we have any matches, remove them and tween the falling blocks that result
-    local matches = self.board:calculateMatches()
-    
-    if matches then
+    -- local matches = self.board:calculateMatches()
+    local varietyInMatches = self.board:calculateMatches()
+
+    if varietyInMatches then
         gSounds['match']:stop()
         gSounds['match']:play()
 
 
         -- add score for each match
-        for k, match in pairs(matches) do
-            self.score = self.score + #match * 50
+        for k, varietyInMatches in pairs(varietyInMatches) do
+            self.score = self.score + #varietyInMatches * 50
             -- add time to timer for a match
-            self.timer = self.timer + 1*#match
-            print("\nk: ",k)
-            print("\nmatch: ",match)
-
-            for i, tile in pairs(matches) do
-                print("\ni: ",i)
-                print("\ntile: ",tile)
+            self.timer = self.timer + 1*#varietyInMatches
+            -- print("\nk: ",k)
+            -- print("matches: ", #varietyInMatches)
+            print("base score: ", self.score)
+            for i, variety in pairs(varietyInMatches) do
+                -- print("i: ",i)
+                -- print("tile: ", tile)
+                print("Tile bonus: " , 10 * variety - 10)
+                self.score = self.score + 10 * variety - 10 -- add additional score for higher ranking tiles
             end
         end
 
