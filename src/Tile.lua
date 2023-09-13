@@ -13,7 +13,7 @@
 
 Tile = Class{}
 
-function Tile:init(x, y, color, variety)
+function Tile:init(x, y, color, variety, shine)
     
     -- board positions
     self.gridX = x
@@ -26,6 +26,7 @@ function Tile:init(x, y, color, variety)
     -- tile appearance/points
     self.color = color
     self.variety = variety
+    self.shine = shine -- bool type
 end
 
 function Tile:render(x, y)
