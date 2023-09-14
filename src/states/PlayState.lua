@@ -167,7 +167,7 @@ function PlayState:update(dt)
         self.shinyBlocks = PlayState:initShinyTiles(self.board) --update particles
         
         -- if we've pressed enter, to select or deselect a tile...
-        if love.keyboard.wasPressed('enter') or love.keyboard.wasPressed('return') then
+         if love.keyboard.wasPressed('enter') or love.keyboard.wasPressed('return') then
             
             -- if same tile as currently highlighted, deselect
             local x = self.boardHighlightX + 1
@@ -176,13 +176,13 @@ function PlayState:update(dt)
             -- if nothing is highlighted, highlight current tile
             if not self.highlightedTile then
                 self.highlightedTile = self.board.tiles[y][x]
-                
+
             -- if we select the position already highlighted, remove highlight
             elseif self.highlightedTile == self.board.tiles[y][x] then
                 self.highlightedTile = nil
-                
-                -- if the difference between X and Y combined of this highlighted tile
-                -- vs the previous is not equal to 1, also remove highlight
+
+            -- if the difference between X and Y combined of this highlighted tile
+            -- vs the previous is not equal to 1, also remove highlight
             elseif math.abs(self.highlightedTile.gridX - x) + math.abs(self.highlightedTile.gridY - y) > 1 then
                 gSounds['error']:play()
                 self.highlightedTile = nil
@@ -190,7 +190,7 @@ function PlayState:update(dt)
                 
                 -- swap grid positions of tiles
 
-                -- 2nd tile prior to swap
+                
                 local tempX = self.highlightedTile.gridX
                 local tempY = self.highlightedTile.gridY
                 
@@ -224,7 +224,10 @@ function PlayState:update(dt)
                     self.board.tiles[self.highlightedTile.gridY][self.highlightedTile.gridX] = self.highlightedTile
                     self.board.tiles[newTile.gridY][newTile.gridX] = newTile
                     
-                    self.highlightedTile = nil
+                    self.highlightedTile.x, self.highlightedTile.y = self.board:tilePosition(self.highlightedTile.gridX, self.highlightedTile.gridY)
+                    newTile.x, newTile.y = self.board:tilePosition(newTile.gridX, newTile.gridY)
+
+                    --self.highlightedTile = nil
                 else
                     -- tween coordinates between the two so they swap
                     Timer.tween(0.1, {
@@ -298,8 +301,6 @@ end
 function PlayState:ShinyTiles()
     for tileY = 1, 8 do
         for tileX = 1, 8 do
-            print("Processing tile at (X:", tileX, "Y:", tileY, ")")
-            print("is shiny block: ", self.board.tiles[tileX][tileY].shine)
             if self.board.tiles[tileX][tileY].shine then
                 -- get positions of tiles relative to the board and find center (half width and height of tile)
                 self.psystem:setPosition(self.board.tiles[tileX][tileY].x + VIRTUAL_WIDTH - 272 + 16, self.board.tiles[tileX][tileY].y + 16 + 16) -- Set the particle system's position to (0, 0) initially
@@ -364,7 +365,26 @@ end
             -- as a result of falling blocks once new blocks have finished falling
             self:calculateMatches()
         end)
-    
+        
+        -- calculate if matches can be made from one swap
+        while not self.board:MatchPossibility() do
+            -- recursively initialize if matches were returned so we always have
+            -- a matchless board on start
+            
+            while self.board:calculateMatches() do
+        
+                -- recursively initialize if matches were returned so we always have
+                -- a matchless board on start
+                self.board:initializeTiles()
+                
+                -- Reset the highlighted tile
+                self.board.highlightedTile = nil
+
+                -- Reset the highlight rectangle position (you can choose a default position)
+                self.board.boardHighlightX = 0
+                self.board.boardHighlightY = 0
+            end
+        end
     -- if no matches, we can continue playing
     else
         self.canInput = true

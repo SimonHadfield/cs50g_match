@@ -1,3 +1,403 @@
-#matches: 	0
-#variety matches: 	0
-is shiny block: 	false
+---------------- Possible Match Found ----------------
+varietyInMatches: 	table: 0x01b8958653c0
+shine: 	false
+base score: 	150
+Tile bonus: 	0
+Tile bonus: 	0
+Tile bonus: 	0
+is shiny -> play: 	false
+false
+false
+---------------- Possible Match Found ----------------
+base score: 	300
+Tile bonus: 	0
+Tile bonus: 	0
+Tile bonus: 	0
+is shiny -> play: 	false
+---------------- Possible Match Found ----------------
+base score: 	450
+Tile bonus: 	0
+Tile bonus: 	0
+Tile bonus: 	0
+is shiny -> play: 	false
+---------------- Possible Match Found ----------------
+base score: 	600
+Tile bonus: 	0
+Tile bonus: 	0
+Tile bonus: 	0
+is shiny -> play: 	false
+---------------- Possible Match Found ----------------
+base score: 	750
+Tile bonus: 	0
+Tile bonus: 	0
+Tile bonus: 	0
+is shiny -> play: 	false
+---------------- Possible Match Found ----------------
+base score: 	900
+Tile bonus: 	0
+Tile bonus: 	0
+Tile bonus: 	0
+is shiny -> play: 	false
+---------------- Possible Match Found ----------------
+base score: 	1050
+Tile bonus: 	0
+Tile bonus: 	0
+Tile bonus: 	0
+is shiny -> play: 	false
+---------------- Possible Match Found ----------------
+base score: 	1200
+Tile bonus: 	0
+Tile bonus: 	0
+Tile bonus: 	0
+is shiny -> play: 	false
+---------------- Possible Match Found ----------------
+base score: 	1350
+Tile bonus: 	0
+Tile bonus: 	0
+Tile bonus: 	0
+is shiny -> play: 	false
+---------------- Possible Match Found ----------------
+---------------- Possible Match Found ----------------
+varietyInMatches: 	table: 0x01b895883238
+shine: 	false
+base score: 	150
+Tile bonus: 	10
+Tile bonus: 	0
+Tile bonus: 	10
+is shiny -> play: 	false
+---------------- Possible Match Found ----------------
+base score: 	570
+Tile bonus: 	10
+Tile bonus: 	0
+Tile bonus: 	0
+is shiny -> play: 	true
+false
+false
+false
+false
+---------------- Possible Match Found ----------------
+base score: 	980
+Tile bonus: 	0
+Tile bonus: 	10
+Tile bonus: 	10
+is shiny -> play: 	true
+---------------- Possible Match Found ----------------
+base score: 	1400
+Tile bonus: 	10
+Tile bonus: 	10
+Tile bonus: 	10
+is shiny -> play: 	true
+---------------- Possible Match Found ----------------
+base score: 	1830
+Tile bonus: 	0
+Tile bonus: 	10
+Tile bonus: 	10
+is shiny -> play: 	true
+---------------- Possible Match Found ----------------
+base score: 	2250
+Tile bonus: 	10
+Tile bonus: 	10
+Tile bonus: 	0
+is shiny -> play: 	true
+---------------- Possible Match Found ----------------
+base score: 	2670
+Tile bonus: 	10
+Tile bonus: 	10
+Tile bonus: 	0
+is shiny -> play: 	true
+---------------- Possible Match Found ----------------
+---------------- Possible Match Found ----------------
+---------------- Possible Match Found ----------------
+---------------- Possible Match Found ----------------
+false
+false
+---------------- Possible Match Found ----------------
+---------------- Possible Match Found ----------------
+---------------- Possible Match Found ----------------
+---------------- Possible Match Found ----------------
+---------------- Possible Match Found ----------------
+---------------- Possible Match Found ----------------
+false
+---------------- Possible Match Found ----------------
+false
+---------------- Possible Match Found ----------------
+---------------- Possible Match Found ----------------
+---------------- Possible Match Found ----------------
+---------------- Possible Match Found ----------------
+---------------- Possible Match Found ----------------
+---------------- Possible Match Found ----------------
+false
+false
+---------------- Possible Match Found ----------------
+---------------- Possible Match Found ----------------
+---------------- Possible Match Found ----------------
+false
+---------------- Possible Match Found ----------------
+---------------- Possible Match Found ----------------
+---------------- Possible Match Found ----------------
+---------------- Possible Match Found ----------------
+---------------- Possible Match Found ----------------
+false
+---------------- Possible Match Found ----------------
+---------------- Possible Match Found ----------------
+false
+false
+---------------- Possible Match Found ----------------
+---------------- Possible Match Found ----------------
+---------------- Possible Match Found ----------------
+---------------- Possible Match Found ----------------
+---------------- Possible Match Found ----------------
+---------------- Possible Match Found ----------------
+---------------- Possible Match Found ----------------
+false
+---------------- Possible Match Found ----------------
+---------------- Possible Match Found ----------------
+---------------- Possible Match Found ----------------
+---------------- Possible Match Found ----------------
+---------------- Possible Match Found ----------------
+---------------- Possible Match Found ----------------
+false
+---------------- Possible Match Found ----------------
+---------------- Possible Match Found ----------------
+---------------- Possible Match Found ----------------
+false
+false
+---------------- Possible Match Found ----------------
+---------------- Possible Match Found ----------------
+false
+---------------- Possible Match Found ----------------
+---------------- Possible Match Found ----------------
+---------------- Possible Match Found ----------------
+---------------- Possible Match Found ----------------
+false
+---------------- Possible Match Found ----------------
+---------------- Possible Match Found ----------------
+---------------- Possible Match Found ----------------
+false
+false
+false
+---------------- Possible Match Found ----------------
+---------------- Possible Match Found ----------------
+---------------- Possible Match Found ----------------
+---------------- Possible Match Found ----------------
+---------------- Possible Match Found ----------------
+---------------- Possible Match Found ----------------
+---------------- Possible Match Found ----------------
+false
+false
+---------------- Possible Match Found ----------------
+---------------- Possible Match Found ----------------
+---------------- Possible Match Found ----------------
+---------------- Possible Match Found ----------------
+---------------- Possible Match Found ----------------
+---------------- Possible Match Found ----------------
+---------------- Possible Match Found ----------------
+---------------- Possible Match Found ----------------
+---------------- Possible Match Found ----------------
+---------------- Possible Match Found ----------------
+---------------- Possible Match Found ----------------
+---------------- Possible Match Found ----------------
+false
+---------------- Possible Match Found ----------------
+---------------- Possible Match Found ----------------
+---------------- Possible Match Found ----------------
+---------------- Possible Match Found ----------------
+---------------- Possible Match Found ----------------
+---------------- Possible Match Found ----------------
+---------------- Possible Match Found ----------------
+---------------- Possible Match Found ----------------
+---------------- Possible Match Found ----------------
+---------------- Possible Match Found ----------------
+---------------- Possible Match Found ----------------
+---------------- Possible Match Found ----------------
+---------------- Possible Match Found ----------------
+---------------- Possible Match Found ----------------
+---------------- Possible Match Found ----------------
+---------------- Possible Match Found ----------------
+---------------- Possible Match Found ----------------
+---------------- Possible Match Found ----------------
+---------------- Possible Match Found ----------------
+---------------- Possible Match Found ----------------
+---------------- Possible Match Found ----------------
+---------------- Possible Match Found ----------------
+---------------- Possible Match Found ----------------
+---------------- Possible Match Found ----------------
+---------------- Possible Match Found ----------------
+---------------- Possible Match Found ----------------
+---------------- Possible Match Found ----------------
+---------------- Possible Match Found ----------------
+---------------- Possible Match Found ----------------
+---------------- Possible Match Found ----------------
+---------------- Possible Match Found ----------------
+---------------- Possible Match Found ----------------
+---------------- Possible Match Found ----------------
+---------------- Possible Match Found ----------------
+---------------- Possible Match Found ----------------
+---------------- Possible Match Found ----------------
+---------------- Possible Match Found ----------------
+---------------- Possible Match Found ----------------
+---------------- Possible Match Found ----------------
+---------------- Possible Match Found ----------------
+---------------- Possible Match Found ----------------
+---------------- Possible Match Found ----------------
+---------------- Possible Match Found ----------------
+---------------- Possible Match Found ----------------
+---------------- Possible Match Found ----------------
+---------------- Possible Match Found ----------------
+---------------- Possible Match Found ----------------
+---------------- Possible Match Found ----------------
+---------------- Possible Match Found ----------------
+varietyInMatches: 	table: 0x01b89586dfe0
+shine: 	true
+base score: 	400
+Tile bonus: 	0
+Tile bonus: 	10
+Tile bonus: 	0
+is shiny -> play: 	true
+---------------- Possible Match Found ----------------
+base score: 	560
+Tile bonus: 	10
+Tile bonus: 	20
+Tile bonus: 	20
+is shiny -> play: 	false
+false
+---------------- Possible Match Found ----------------
+base score: 	1010
+Tile bonus: 	0
+Tile bonus: 	0
+Tile bonus: 	20
+is shiny -> play: 	true
+---------------- Possible Match Found ----------------
+base score: 	1430
+Tile bonus: 	0
+Tile bonus: 	0
+Tile bonus: 	20
+is shiny -> play: 	true
+---------------- Possible Match Found ----------------
+base score: 	1850
+Tile bonus: 	0
+Tile bonus: 	20
+Tile bonus: 	20
+base score: 	2290
+Tile bonus: 	0
+Tile bonus: 	0
+Tile bonus: 	20
+is shiny -> play: 	true
+---------------- Possible Match Found ----------------
+base score: 	2710
+Tile bonus: 	0
+Tile bonus: 	0
+Tile bonus: 	20
+is shiny -> play: 	true
+---------------- Possible Match Found ----------------
+base score: 	3130
+Tile bonus: 	0
+Tile bonus: 	0
+Tile bonus: 	20
+is shiny -> play: 	true
+---------------- Possible Match Found ----------------
+base score: 	3550
+Tile bonus: 	0
+Tile bonus: 	0
+Tile bonus: 	20
+is shiny -> play: 	true
+---------------- Possible Match Found ----------------
+base score: 	3970
+Tile bonus: 	0
+Tile bonus: 	0
+Tile bonus: 	20
+base score: 	4390
+Tile bonus: 	0
+Tile bonus: 	0
+Tile bonus: 	20
+is shiny -> play: 	true
+---------------- Possible Match Found ----------------
+---------------- Possible Match Found ----------------
+varietyInMatches: 	table: 0x01b89b6bb210
+shine: 	true
+base score: 	400
+Tile bonus: 	20
+Tile bonus: 	10
+Tile bonus: 	0
+is shiny -> play: 	true
+false
+---------------- Possible Match Found ----------------
+base score: 	830
+Tile bonus: 	30
+Tile bonus: 	0
+Tile bonus: 	20
+is shiny -> play: 	true
+---------------- Possible Match Found ----------------
+base score: 	1280
+Tile bonus: 	20
+Tile bonus: 	30
+Tile bonus: 	0
+is shiny -> play: 	true
+---------------- Possible Match Found ----------------
+base score: 	1730
+Tile bonus: 	20
+Tile bonus: 	30
+Tile bonus: 	0
+is shiny -> play: 	true
+---------------- Possible Match Found ----------------
+base score: 	2180
+Tile bonus: 	20
+Tile bonus: 	30
+Tile bonus: 	0
+is shiny -> play: 	true
+---------------- Possible Match Found ----------------
+base score: 	2630
+Tile bonus: 	20
+Tile bonus: 	30
+Tile bonus: 	0
+is shiny -> play: 	true
+---------------- Possible Match Found ----------------
+base score: 	3080
+Tile bonus: 	20
+Tile bonus: 	30
+Tile bonus: 	0
+is shiny -> play: 	true
+---------------- Possible Match Found ----------------
+base score: 	3530
+Tile bonus: 	20
+Tile bonus: 	30
+Tile bonus: 	0
+is shiny -> play: 	true
+---------------- Possible Match Found ----------------
+base score: 	3980
+Tile bonus: 	20
+Tile bonus: 	30
+Tile bonus: 	0
+is shiny -> play: 	true
+---------------- Possible Match Found ----------------
+base score: 	4430
+Tile bonus: 	20
+Tile bonus: 	30
+Tile bonus: 	0
+is shiny -> play: 	true
+---------------- Possible Match Found ----------------
+base score: 	4880
+Tile bonus: 	20
+Tile bonus: 	30
+Tile bonus: 	0
+is shiny -> play: 	true
+---------------- Possible Match Found ----------------
+base score: 	5330
+Tile bonus: 	20
+Tile bonus: 	30
+Tile bonus: 	0
+is shiny -> play: 	true
+---------------- Possible Match Found ----------------
+---------------- Possible Match Found ----------------
+varietyInMatches: 	false
+shine: 	false
+ERROR
+############ No MATCH #################
+Error: src/states/PlayState.lua:227: attempt to call method 'tilePosition' (a nil value)
+stack traceback:
+	[love "boot.lua"]:345: in function 'tilePosition'
+	src/states/PlayState.lua:227: in function 'update'
+	src/StateMachine.lua:22: in function 'update'
+	main.lua:111: in function 'update'
+	[love "callbacks.lua"]:162: in function <[love "callbacks.lua"]:144>
+	[C]: in function 'xpcall'

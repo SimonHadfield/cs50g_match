@@ -30,7 +30,6 @@ end
 function Board:initializeTiles()
     self.tiles = {}
     
-    
     if self.level < 7 then 
         for tileY = 1, 8 do
             
@@ -72,8 +71,125 @@ function Board:initializeTiles()
         -- a matchless board on start
         self:initializeTiles()
     end
+
+    while not self:MatchPossibility() do
+        -- reinit tiles
+        self:initializeTiles()
+
+        
+        -- Reset the highlighted tile
+        self.highlightedTile = nil
+
+        -- Reset the highlight rectangle position (you can choose a default position)
+        self.boardHighlightX = 0
+        self.boardHighlightY = 0
+    end
+    
 end
 
+function Board:MatchPossibility()
+    -- iterate over all possible swaps to get a match. if no match then re-init tiles
+    
+    -- originalBoard prior to swapping
+    local originalTiles = {}
+    for tileY = 1, 8 do
+        originalTiles[tileY] = {}
+        for tileX = 1, 8 do
+            originalTiles[tileY][tileX] = self.tiles[tileY][tileX]:clone()
+        end
+    end
+    
+    -- for all y rows
+    for tileY = 1, 8 do --8th row 1 less swap
+        for tileX = 1, 8 do
+            if tileX < 8 and tileY < 8 then
+                -- print("tileX: ", tileX, " tileY: ", tileY)
+                
+                -- swap tiles adjacent / horizontally
+                local tempTile = self.tiles[tileY][tileX]
+                self.tiles[tileY][tileX] = self.tiles[tileY][tileX + 1]
+                self.tiles[tileY][tileX + 1] = tempTile
+
+                local varietyInMatches, isShiny = self:calculateMatches()
+
+                -- Reset the board to original tiles
+                self.tiles = originalTiles
+                
+                -- check if swap causes a match
+                if varietyInMatches then
+                    print("---------------- Possible Match Found ----------------")
+                    return true 
+                end
+
+                -- swap tiles adjacent / veritcally 
+                local tempTile = self.tiles[tileY][tileX]
+                self.tiles[tileY][tileX] = self.tiles[tileY + 1][tileX]
+                self.tiles[tileY + 1][tileX] = tempTile
+
+                local varietyInMatches, isShiny = self:calculateMatches()
+
+                -- Reset the board to original tiles
+                self.tiles = originalTiles
+                
+                -- check if swap causes a match
+                if varietyInMatches then
+                    print("---------------- Possible Match Found ----------------")
+                    return true 
+                end
+
+            elseif tileX == 8 and tileY < 8 then
+                --print("tileX: ", tileX, " tileY: ", tileY)
+                
+                -- for last column cannot flip horizontally only vertically
+            
+                -- swap tiles adjacent / veritcally 
+                local tempTile = self.tiles[tileY][tileX]
+                self.tiles[tileY][tileX] = self.tiles[tileY + 1][tileX]
+                self.tiles[tileY + 1][tileX] = tempTile
+
+                local varietyInMatches, isShiny = self:calculateMatches()
+
+                -- Reset the board to original tiles
+                self.tiles = originalTiles
+                
+                -- check if swap causes a match
+                if varietyInMatches then
+                    print("---------------- Possible Match Found ----------------")
+                    return true 
+                end
+
+            elseif tileX < 8 and tileY == 8 then
+                -- for last row cannot flip vertically only horizontally
+            
+                -- swap tiles adjacent / veritcally 
+                local tempTile = self.tiles[tileY][tileX]
+                self.tiles[tileY][tileX] = self.tiles[tileY][tileX + 1]
+                self.tiles[tileY][tileX + 1] = tempTile
+
+                local varietyInMatches, isShiny = self:calculateMatches()
+
+                -- Reset the board to original tiles
+                self.tiles = originalTiles
+                
+                -- check if swap causes a match
+                if varietyInMatches then
+                    print("---------------- Possible Match Found ----------------")
+                    return true 
+                end
+
+            elseif tileX == 8 and tileY == 8 then
+                break -- final tile all possible swaps completed
+            end
+        end
+    end
+    local a = math.random(200)
+    if a > 1 then
+        print("false")
+        return false
+    else
+        return true
+    end
+end
 --[[
     Goes left to right, top to bottom in the board, calculating matches by counting consecutive
     tiles of the same color. Doesn't need to check the last tile in every row or column if the 
@@ -277,9 +393,9 @@ function Board:calculateMatches()
 
     -- return matches table if > 0, else just return false
     --return #self.matches > 0 and self.matches or false
-    print("#matches: ", #self.matches)
-    print("#variety matches: ", #self.varietyInMatches)
-    print("is shiny block: ", self.isShiny)
+    --print("#matches: ", #self.matches)
+    --print("#variety matches: ", #self.varietyInMatches)
+    --print("is shiny block: ", self.isShiny)
     return (#self.varietyInMatches > 0 and self.varietyInMatches or false), self.isShiny
 end
 
@@ -307,8 +423,6 @@ function Board:removeMatches(shine)
                     elim_column = true
                     no_column = tile.gridX
                 end
-                --print("tileX: ", tile.gridX, "tileY: ",tile.gridY)
-                --self.tiles[tile.gridY][tile.gridX] = nil
             end
         end
         
