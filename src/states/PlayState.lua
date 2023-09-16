@@ -111,6 +111,8 @@ function PlayState:initShinyTiles(board)
 end
 
 function PlayState:update(dt)
+
+
     if next(self.shinyBlocks) == nil then
         self.shinyBlocks = PlayState:initShinyTiles(self.board)
     end
@@ -189,12 +191,9 @@ function PlayState:update(dt)
             else
                 
                 -- swap grid positions of tiles
-
-                
                 local tempX = self.highlightedTile.gridX
                 local tempY = self.highlightedTile.gridY
                 
-                -- tile to replace 2nd tile
                 local newTile = self.board.tiles[y][x]
                 
                 self.highlightedTile.gridX = newTile.gridX
@@ -217,17 +216,22 @@ function PlayState:update(dt)
                     print("############ No MATCH #################")
 
                     -- Swap tiles in the tiles table back to their original positions
-                    self.highlightedTile.gridX = tempX
-                    self.highlightedTile.gridY = tempY
-                    newTile.gridX = x
-                    newTile.gridY = y
+
+                    -- Remember the original positions before swapping
+                    local originalGridX = self.highlightedTile.gridX
+                    local originalGridY = self.highlightedTile.gridY
+
+                    -- Swap grid positions back to the original positions
+                    self.highlightedTile.gridX = newTile.gridX
+                    self.highlightedTile.gridY = newTile.gridY
+                    newTile.gridX = originalGridX
+                    newTile.gridY = originalGridY
+
+                    -- Swap tiles in the tiles table back to their original positions
                     self.board.tiles[self.highlightedTile.gridY][self.highlightedTile.gridX] = self.highlightedTile
                     self.board.tiles[newTile.gridY][newTile.gridX] = newTile
-                    
-                    self.highlightedTile.x, self.highlightedTile.y = self.board:tilePosition(self.highlightedTile.gridX, self.highlightedTile.gridY)
-                    newTile.x, newTile.y = self.board:tilePosition(newTile.gridX, newTile.gridY)
 
-                    --self.highlightedTile = nil
+                    self.highlightedTile = nil
                 else
                     -- tween coordinates between the two so they swap
                     Timer.tween(0.1, {
@@ -240,42 +244,6 @@ function PlayState:update(dt)
                         self:calculateMatches()
                     end)
                 end
-                
-
-                
-                --[[
-                    -- reverse swap
-                    -- swap grid positions of tiles
-                    local tempX = self.highlightedTile.gridX
-                    local tempY = self.highlightedTile.gridY
-                    
-                    local newTile = self.board.tiles[y][x]
-                    
-                    self.highlightedTile.gridX = newTile.gridX
-                    self.highlightedTile.gridY = newTile.gridY
-                    newTile.gridX = tempX
-                    newTile.gridY = tempY
-                    
-                    -- swap tiles in the tiles table
-                    self.board.tiles[self.highlightedTile.gridY][self.highlightedTile.gridX] =
-                    self.highlightedTile
-                    
-                    self.board.tiles[newTile.gridY][newTile.gridX] = newTile
-                    
-                    -- tween coordinates between the two so they swap
-                    Timer.tween(0.1, {
-                        [self.highlightedTile] = {x = newTile.x, y = newTile.y},
-                        [newTile] = {x = self.highlightedTile.x, y = self.highlightedTile.y}
-                    })
-                    
-                    -- once the swap is finished, we can tween falling blocks as needed
-                    :finish(function()
-                        self:calculateMatches()
-                    end)
-                    
-                end
-                    if match == nil then
-                    ]]--
             end
         end
     end
@@ -320,18 +288,18 @@ end
     function PlayState:calculateMatches()
         self.highlightedTile = nil
         
-    -- if we have any matches, remove them and tween the falling blocks that result
-    -- local matches = self.board:calculateMatches()
-    local varietyInMatches, isShiny = self.board:calculateMatches()
-    self.isShiny = isShiny
-
-    if varietyInMatches then
-        gSounds['match']:stop()
-        gSounds['match']:play()
-
-
-        -- add score for each match
-        for k, varietyInMatches in pairs(varietyInMatches) do
+        -- if we have any matches, remove them and tween the falling blocks that result
+        -- local matches = self.board:calculateMatches()
+        local varietyInMatches, isShiny = self.board:calculateMatches()
+        self.isShiny = isShiny
+        
+        if varietyInMatches then
+            gSounds['match']:stop()
+            gSounds['match']:play()
+            
+            
+            -- add score for each match
+            for k, varietyInMatches in pairs(varietyInMatches) do
             if self.isShiny == true then
                 self.score = self.score + 8 * 50 -- for whole row
                 self.timer = self.timer + 8
@@ -349,14 +317,14 @@ end
                 self.score = self.score + 10 * variety - 10 -- add additional score for higher ranking tiles
             end
         end
-
+        
         -- remove any tiles that matched from the board, making empty spaces
         print("is shiny -> play: ", self.isShiny)
         self.board:removeMatches(self.isShiny)
-
+        
         -- gets a table with tween values for tiles that should now fall
         local tilesToFall = self.board:getFallingTiles()
-
+        
         -- tween new tiles that spawn from the ceiling over 0.25s to fill in
         -- the new upper gaps that exist
         Timer.tween(0.25, tilesToFall):finish(function()
@@ -366,29 +334,24 @@ end
             self:calculateMatches()
         end)
         
-        -- calculate if matches can be made from one swap
-        while not self.board:MatchPossibility() do
-            -- recursively initialize if matches were returned so we always have
-            -- a matchless board on start
-            
-            while self.board:calculateMatches() do
+        --self:MatchPossibility()
         
-                -- recursively initialize if matches were returned so we always have
-                -- a matchless board on start
-                self.board:initializeTiles()
-                
-                -- Reset the highlighted tile
-                self.board.highlightedTile = nil
-
-                -- Reset the highlight rectangle position (you can choose a default position)
-                self.board.boardHighlightX = 0
-                self.board.boardHighlightY = 0
-            end
-        end
-    -- if no matches, we can continue playing
     else
         self.canInput = true
     end
+end
+
+-- similar to calculate matches above however for resetting board if no matches possible after a match
+function PlayState:MatchPossibility()
+    self.highlightedTile = nil
+
+    if self.board:MatchPossibility(self.board) then
+        print(true)
+    else 
+        print(false)
+    end
+
+    self.canInput = true
 end
 
 function PlayState:render()

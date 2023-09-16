@@ -25,6 +25,7 @@ function Board:init(x, y, level)
     self:initializeTiles()
     self.isShiny = true
 
+
 end
 
 function Board:initializeTiles()
@@ -38,12 +39,12 @@ function Board:initializeTiles()
 
             for tileX = 1, 8 do
                 -- chance of shiny block
-                shine_prob = math.random(8) -- greater than 1 then no shiny block added   
+                shine_prob = math.random(8) -- 1/8 chance for a shiny block   
                 -- create a new tile at X,Y with a random color and variety
                 if shine_prob > 1 then
-                    table.insert(self.tiles[tileY], Tile(tileX, tileY, math.random(18), math.random(self.level), false))
+                    table.insert(self.tiles[tileY], Tile(tileX, tileY, math.random(12), math.random(self.level), false))
                 else 
-                    table.insert(self.tiles[tileY], Tile(tileX, tileY, math.random(18), math.random(self.level), true))
+                    table.insert(self.tiles[tileY], Tile(tileX, tileY, math.random(12), math.random(self.level), true))
                 end
             end
         end
@@ -58,40 +59,32 @@ function Board:initializeTiles()
                 shine_prob = math.random(8) -- greater than 1 then no shiny block added   
                 -- create a new tile at X,Y with a random color and variety
                 if shine_prob > 1 then
-                    table.insert(self.tiles[tileY], Tile(tileX, tileY, math.random(18), math.random(self.level), false))
+                    table.insert(self.tiles[tileY], Tile(tileX, tileY, math.random(12), math.random(self.level), false))
                 else 
-                    table.insert(self.tiles[tileY], Tile(tileX, tileY, math.random(18), math.random(self.level), true))
+                    table.insert(self.tiles[tileY], Tile(tileX, tileY, math.random(12), math.random(self.level), true))
                 end
             end
         end
-    end 
+    end
+
     while self:calculateMatches() do
         
         -- recursively initialize if matches were returned so we always have
         -- a matchless board on start
-        self:initializeTiles()
-    end
 
-    while not self:MatchPossibility() do
-        -- reinit tiles
-        self:initializeTiles()
-
-        
-        -- Reset the highlighted tile
-        self.highlightedTile = nil
-
-        -- Reset the highlight rectangle position (you can choose a default position)
-        self.boardHighlightX = 0
-        self.boardHighlightY = 0
+        while not self:MatchPossibility() do
+            -- recursively init board if no possible matches
+            self:initializeTiles()
+        end
     end
     
 end
 
-function Board:MatchPossibility()
+function Board:MatchPossibility(params)
     -- iterate over all possible swaps to get a match. if no match then re-init tiles
     
     -- originalBoard prior to swapping
-    local originalTiles = {}
+    local originalTiles = {} or params.board()
     for tileY = 1, 8 do
         originalTiles[tileY] = {}
         for tileX = 1, 8 do
@@ -182,13 +175,9 @@ function Board:MatchPossibility()
             end
         end
     end
-    local a = math.random(200)
-    if a > 1 then
-        print("false")
-        return false
-    else
-        return true
-    end
+
+    return true
+
 end
 --[[
     Goes left to right, top to bottom in the board, calculating matches by counting consecutive
@@ -516,11 +505,11 @@ function Board:getFallingTiles()
                     shine_prob = math.random(8) -- greater than 1 then no shiny block added 
 
                     -- new tile with random color and variety
-                    local tile = Tile(x, y, math.random(18), math.random(self.level), false)
+                    local tile = Tile(x, y, math.random(12), math.random(self.level), false)
                     if shine_prob > 1 then
-                        tile = Tile(x, y, math.random(18), math.random(self.level), false)
+                        tile = Tile(x, y, math.random(12), math.random(self.level), false)
                     else
-                        tile = Tile(x, y, math.random(18), math.random(self.level), true)
+                        tile = Tile(x, y, math.random(12), math.random(self.level), true)
                     end
                     tile.y = -32
                     self.tiles[y][x] = tile
@@ -544,11 +533,11 @@ function Board:getFallingTiles()
                             shine_prob = math.random(8) -- greater than 1 then no shiny block added 
 
                                 -- new tile with random color and variety
-                                local tile = Tile(x, y, math.random(18), math.random(self.level), false)
+                                local tile = Tile(x, y, math.random(12), math.random(self.level), false)
                                 if shine_prob > 1 then
-                                    tile = Tile(x, y, math.random(18), math.random(self.level), false)
+                                    tile = Tile(x, y, math.random(12), math.random(self.level), false)
                                 else
-                                    tile = Tile(x, y, math.random(18), math.random(self.level), true)
+                                    tile = Tile(x, y, math.random(12), math.random(self.level), true)
                                 end
                             tile.y = -32
                             self.tiles[y][x] = tile
