@@ -333,8 +333,7 @@ end
             -- as a result of falling blocks once new blocks have finished falling
             self:calculateMatches()
         end)
-        
-        --self:MatchPossibility()
+        --self:MatchPossibility()        
         
     else
         self.canInput = true
