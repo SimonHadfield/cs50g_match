@@ -112,6 +112,7 @@ end
 
 function PlayState:update(dt)
 
+
     if not self.board:MatchPossibility() then
         self.board = Board(VIRTUAL_WIDTH - 272, 16, self.level)
     end
@@ -216,9 +217,14 @@ function PlayState:update(dt)
                 
                 self.board.tiles[newTile.gridY][newTile.gridX] = newTile
                 
+                
+                -- prevent swap if no match
                 local varietyInMatches, isShiny = self.board:calculateMatches()
                 print("varietyInMatches: ", varietyInMatches)
                 print("shine: ", isShiny)
+                if not varietyInMatches == false  then
+                    print("match found")
+                end
                 if varietyInMatches == false then
                     gSounds['error']:play()
                     print("############ No MATCH #################")
@@ -294,7 +300,6 @@ end
         self.highlightedTile = nil
         
         -- if we have any matches, remove them and tween the falling blocks that result
-        -- local matches = self.board:calculateMatches()
         local varietyInMatches, isShiny = self.board:calculateMatches()
         self.isShiny = isShiny
         
