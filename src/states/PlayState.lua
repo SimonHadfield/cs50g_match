@@ -112,6 +112,9 @@ end
 
 function PlayState:update(dt)
 
+    if not self.board:MatchPossibility() then
+        self.board = Board(VIRTUAL_WIDTH - 272, 16, self.level)
+    end
 
     if next(self.shinyBlocks) == nil then
         self.shinyBlocks = PlayState:initShinyTiles(self.board)
@@ -170,6 +173,7 @@ function PlayState:update(dt)
         
         -- if we've pressed enter, to select or deselect a tile...
          if love.keyboard.wasPressed('enter') or love.keyboard.wasPressed('return') then
+
             
             -- if same tile as currently highlighted, deselect
             local x = self.boardHighlightX + 1
@@ -178,11 +182,16 @@ function PlayState:update(dt)
             -- if nothing is highlighted, highlight current tile
             if not self.highlightedTile then
                 self.highlightedTile = self.board.tiles[y][x]
+                
+                -- print tile color
+                print(self.board.tiles[y][x].color)
 
             -- if we select the position already highlighted, remove highlight
             elseif self.highlightedTile == self.board.tiles[y][x] then
                 self.highlightedTile = nil
 
+                -- print tile color
+                print(self.board.tiles[y][x].color)
             -- if the difference between X and Y combined of this highlighted tile
             -- vs the previous is not equal to 1, also remove highlight
             elseif math.abs(self.highlightedTile.gridX - x) + math.abs(self.highlightedTile.gridY - y) > 1 then
@@ -212,7 +221,6 @@ function PlayState:update(dt)
                 print("shine: ", isShiny)
                 if varietyInMatches == false then
                     gSounds['error']:play()
-                    print("ERROR")
                     print("############ No MATCH #################")
 
                     -- Swap tiles in the tiles table back to their original positions
@@ -251,14 +259,11 @@ function PlayState:update(dt)
     -- _______________ Spec.3 add shiny blocks ______________________
     -- shiny blocks (particle system)
     -- if block is shiney then emit particles
-    --print("size of table", #self.shinyBlocks)
     for _, block in pairs(self.shinyBlocks) do
-        --print("Block: ", _)
-        --print("particle emitted at x and y: ", block.x," ", block.y)
+
         self.psystem:setPosition(block.x + VIRTUAL_WIDTH - 272 + 16, block.y + 16 + 16)
         self.psystem:emit(1)
     end
-    --print(self.shinyBlocks[1])
     -- for rendering particle systems
     self.psystem:update(dt)
     
@@ -300,26 +305,25 @@ end
             
             -- add score for each match
             for k, varietyInMatches in pairs(varietyInMatches) do
-            if self.isShiny == true then
-                self.score = self.score + 8 * 50 -- for whole row
-                self.timer = self.timer + 8
-            else
-                self.score = self.score + #varietyInMatches * 50
-                self.timer = self.timer + #varietyInMatches -- add time to timer for a match
+                if self.isShiny == true then
+                    self.score = self.score + 8 * 50 -- for whole row
+                    self.timer = self.timer + 8
+                else
+                    self.score = self.score + #varietyInMatches * 50
+                    self.timer = self.timer + #varietyInMatches -- add time to timer for a match
+                end
+                -- print("\nk: ",k)
+                -- print("matches: ", #varietyInMatches)
+                print("base score: ", self.score)
+                for i, variety in pairs(varietyInMatches) do
+                    -- print("i: ",i)
+                    -- print("tile: ", tile)
+                    print("Tile bonus: " , 10 * variety - 10)
+                    self.score = self.score + 10 * variety - 10 -- add additional score for higher ranking tiles
+                end
             end
-            -- print("\nk: ",k)
-            -- print("matches: ", #varietyInMatches)
-            print("base score: ", self.score)
-            for i, variety in pairs(varietyInMatches) do
-                -- print("i: ",i)
-                -- print("tile: ", tile)
-                print("Tile bonus: " , 10 * variety - 10)
-                self.score = self.score + 10 * variety - 10 -- add additional score for higher ranking tiles
-            end
-        end
         
         -- remove any tiles that matched from the board, making empty spaces
-        print("is shiny -> play: ", self.isShiny)
         self.board:removeMatches(self.isShiny)
         
         -- gets a table with tween values for tiles that should now fall
@@ -332,8 +336,7 @@ end
             -- recursively call function in case new matches have been created
             -- as a result of falling blocks once new blocks have finished falling
             self:calculateMatches()
-        end)
-        --self:MatchPossibility()        
+        end)       
         
     else
         self.canInput = true
@@ -342,13 +345,10 @@ end
 
 -- similar to calculate matches above however for resetting board if no matches possible after a match
 function PlayState:MatchPossibility()
-    self.highlightedTile = nil
 
-    if self.board:MatchPossibility(self.board) then
-        print(true)
-    else 
-        print(false)
-    end
+    --self.highlightedTile = nil
+    self.board:MatchPossibility(self.board)
+
 
     self.canInput = true
 end

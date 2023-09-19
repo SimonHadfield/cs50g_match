@@ -1,18 +1,188 @@
-no parameter board given
-Error: src/Board.lua:89: attempt to index local 'params' (a nil value)
-stack traceback:
-	[love "boot.lua"]:345: in function '__index'
-	src/Board.lua:89: in function 'MatchPossibility'
-	src/Board.lua:75: in function 'initializeTiles'
-	src/Board.lua:25: in function 'init'
-	lib/class.lua:79: in function 'Board'
-	src/states/BeginGameState.lua:33: in function 'enter'
-	src/StateMachine.lua:18: in function 'change'
-	src/states/StartState.lua:91: in function 'finishField'
-	lib/knife/timer.lua:81: in function 'update'
-	lib/knife/timer.lua:229: in function 'update'
-	src/states/StartState.lua:108: in function 'update'
-	src/StateMachine.lua:22: in function 'update'
-	main.lua:111: in function 'update'
-	[love "callbacks.lua"]:162: in function <[love "callbacks.lua"]:144>
-	[C]: in function 'xpcall'
+3
+varietyInMatches: 	table: 0x01c9854d7cd8
+shine: 	true
+base score: 	400
+Tile bonus: 	0
+Tile bonus: 	0
+Tile bonus: 	0
+14
+varietyInMatches: 	table: 0x01c98551fcb8
+shine: 	true
+base score: 	800
+Tile bonus: 	0
+Tile bonus: 	0
+Tile bonus: 	0
+8
+varietyInMatches: 	false
+shine: 	false
+############ No MATCH #################
+8
+varietyInMatches: 	false
+shine: 	false
+############ No MATCH #################
+8
+varietyInMatches: 	false
+shine: 	false
+############ No MATCH #################
+8
+varietyInMatches: 	false
+shine: 	false
+############ No MATCH #################
+8
+varietyInMatches: 	false
+shine: 	false
+############ No MATCH #################
+8
+varietyInMatches: 	false
+shine: 	false
+############ No MATCH #################
+8
+8
+8
+8
+7
+varietyInMatches: 	table: 0x01c985538588
+shine: 	false
+base score: 	950
+Tile bonus: 	0
+Tile bonus: 	0
+Tile bonus: 	0
+11
+7
+varietyInMatches: 	false
+shine: 	false
+############ No MATCH #################
+9
+varietyInMatches: 	false
+shine: 	false
+############ No MATCH #################
+4
+varietyInMatches: 	table: 0x01c9854b79e0
+shine: 	false
+base score: 	1100
+Tile bonus: 	0
+Tile bonus: 	0
+Tile bonus: 	0
+7
+varietyInMatches: 	false
+shine: 	false
+############ No MATCH #################
+10
+varietyInMatches: 	table: 0x01c9854ecd40
+shine: 	false
+base score: 	1250
+Tile bonus: 	0
+Tile bonus: 	0
+Tile bonus: 	0
+11
+varietyInMatches: 	table: 0x01c98552e288
+shine: 	true
+base score: 	400
+Tile bonus: 	0
+Tile bonus: 	0
+Tile bonus: 	0
+14
+2
+2
+14
+varietyInMatches: 	table: 0x01c985526570
+shine: 	false
+base score: 	550
+Tile bonus: 	0
+Tile bonus: 	10
+Tile bonus: 	10
+3
+varietyInMatches: 	false
+shine: 	false
+############ No MATCH #################
+7
+varietyInMatches: 	false
+shine: 	false
+############ No MATCH #################
+2
+varietyInMatches: 	false
+shine: 	false
+############ No MATCH #################
+3
+varietyInMatches: 	false
+shine: 	false
+############ No MATCH #################
+3
+varietyInMatches: 	false
+shine: 	false
+############ No MATCH #################
+3
+varietyInMatches: 	false
+shine: 	false
+############ No MATCH #################
+1
+varietyInMatches: 	false
+shine: 	false
+############ No MATCH #################
+6
+varietyInMatches: 	false
+shine: 	false
+############ No MATCH #################
+7
+varietyInMatches: 	false
+shine: 	false
+############ No MATCH #################
+13
+varietyInMatches: 	false
+shine: 	false
+############ No MATCH #################
+7
+varietyInMatches: 	false
+shine: 	false
+############ No MATCH #################
+11
+varietyInMatches: 	false
+shine: 	false
+############ No MATCH #################
+14
+varietyInMatches: 	false
+shine: 	false
+############ No MATCH #################
+8
+varietyInMatches: 	false
+shine: 	false
+############ No MATCH #################
+11
+varietyInMatches: 	false
+shine: 	false
+############ No MATCH #################
+6
+6
+1
+3
+varietyInMatches: 	false
+shine: 	false
+############ No MATCH #################
+14
+varietyInMatches: 	false
+shine: 	false
+############ No MATCH #################
+11
+11
+11
+7
+7
+1
+varietyInMatches: 	table: 0x01c985528e98
+shine: 	false
+base score: 	720
+Tile bonus: 	0
+Tile bonus: 	0
+Tile bonus: 	10
+2
+varietyInMatches: 	false
+shine: 	false
+############ No MATCH #################
+4
+varietyInMatches: 	false
+shine: 	false
+############ No MATCH #################
+2
+varietyInMatches: 	false
+shine: 	false
+############ No MATCH #################
